@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Overview projects</h1>
+        <div class="content-section">
+            {% for project in projects %}
+                <table class="table table-striped">
+                    <h2>{{project.hov}} - {{project.customer_name}}</h2>
+                    <p>Budget: {{project.budget}} [CHF]</p>
+                    <thead>
+                        <tr>
+                            <th>P/N</th>
+                            <th>Name</th>
+                            <th>Hours [h]</th>
+                            <th>Costs incurred [CHF]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for unit in units %}
+                        <tr>
+                        {% if unit.project_id == project.id %}    
+                            <td>{{unit.pn}}</td> 
+                            <td>{{unit.pn_name}}</td> 
+                            <td>{{find_total_hours(unit.pn)}}</td>
+                            <td>{{project.rate * find_total_hours(unit.pn)}}</td>
+                        {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong> Sum </strong></td>
+                            <td><strong> -- </strong></td>
+                            <td><strong>{{cost_per_project(project.id)[0]}}</strong></td>
+                            <td><strong>{{cost_per_project(project.id)[1]}} ({{cost_per_project(project.id)[2]*100}}% spent)</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            {% endfor %}
+        </div>
+{% endblock content %}

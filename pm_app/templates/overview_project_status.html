@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{title}}</h1>
+        <div class="content-section">
+            <legend>Active projects</legend>
+            <table class="table table-striped">
+                {% for project in active_projects %}
+                <tr>
+                    <td>{{project.hov}} - {{project.customer_name}}</td>
+                </tr>    
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="content-section">
+            <legend>Deactivated projects</legend>
+            <table class="table table-striped">
+                {% for project in deactivated_projects %}
+                <tr>
+                    <td>{{project.hov}} - {{project.customer_name}}</td>
+                </tr>    
+                {% endfor %}
+            </table>
+        </div>
+
+{% endblock content %}

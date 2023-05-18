@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>User Management</h2>
+<div class="content-section">
+    <table class="table table-striped table-hover text-center table-condensed">
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('register') }}">Create a user</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('add_supervisor',username=current_user) }}">Create a supervisor from users</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('add_admin',username=current_user) }}">Create a admin from users</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('remove_user',username=current_user)}}">Remove user</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('remove_supervisor',username=current_user) }}">Remove user from supervisor</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('remove_admin',username=current_user) }}">Remove user from admins</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('overview_users',username=current_user) }}">Show all users</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('overview_supervisors',username=current_user) }}">Show all supervisors</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('overview_admins',username=current_user) }}">Show all admins</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('get_user') }}">Modify a user</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="#"></a></td>
+            <td scope="col"><a class="nav-item nav-link" href="#"></a></td>
+        </tr>
+    </table>
+    <br>
+    <ul>
+        <li><small>Users can only see their work and the corresponding cost</small></li>
+        <li><small>Supervisors can see any information but they cannot change it</small></li>
+        <li><small>Admins can see any information and they can change it</small></li>
+    </ul>
+</div>
+
+
+<h2>Project Management</h2>
+<div class="content-section">
+    <table class="table table-striped table-hover text-center table-condensed">
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('create_project') }}">Create a project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('create_unit') }}">Create a unit</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{url_for('create_task')}}">Create Task</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('delete_project',username=current_user)}}">Remove a project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('delete_unit',username=current_user)}}">Remove a unit</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('delete_task',username=current_user)}}">Remove a task</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('about') }}">Show all projects</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('overview_units',username=current_user)}}">Show all units</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('overview_tasks',username=current_user)}}">Show all tasks</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('deactivate_project',username=current_user)}}">Deactivate project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('reactivate_project',username=current_user)}}">Reactivate project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('show_project_status',username=current_user)}}">Show active/deactive projects</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('get_project') }}">Modify a project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('find_unit') }}">Modify a unit</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="{{ url_for('modify_unit',username=current_user)}}">Modify unit's associativity to a project</a></td>
+        </tr>
+    </table>
+    <br>
+    <ul>
+        <li><small>Projects, units and tasks can only be deleted as long as no work has been performed. </small></li>
+        <li><small>Time entries can be modified using the <a href="{{ url_for('calendar_overview') }}">calender</a></small></li>
+        <li><small>Only deactivated projects can be deleted - <strong>DATA WILL PERMANENTLY BE DELETED</strong></small></li>
+    </ul>   
+</div>
+
+<h2>Business Inteligence</h2>
+<div class="content-section">
+    <table class="table table-striped table-hover text-center table-condensed">
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="#">Status all projects</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="#">Status all units</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="#">Status of a project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="#">Status of a unit</a></td>
+        </tr>
+        <tr>
+            <td scope="col"><a class="nav-item nav-link" href="#">Prediction of a project</a></td>
+            <td scope="col"><a class="nav-item nav-link" href="#">Prediction of a unit</a></td>
+        </tr>
+    </table>
+    <br>
+    <ul>
+        <li><small></small></li>
+        <li><small></small></li>
+        <li><small></small></li>
+    </ul>  
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-section">
+    <h2>Overview of {{kind.capitalize()}}</h2>
+    <table>
+        {%for info in infos%}
+        <tr>
+            <td>{{info.task_name}} 
+                {% if info.task_description %}
+                {{info.task_description}}
+                {% endif %}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+
+{% endblock %}

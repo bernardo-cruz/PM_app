@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{title}}</h1>
+        {% for project in projects %}
+        <div class="content-section">
+            <table class="table table-striped">
+                <h2>{{project.hov}} - {{project.customer_name}}</h2>
+                <p>Budget: {{project.budget}} [CHF] | Rate: {{project.rate}} [CHF/h]</p>
+                <thead>
+                    <tr>
+                        <th>P/N</th>
+                        <th>Name</th>
+                        <th>Hours [h]</th>
+                        <th>Costs incurred [CHF]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for unit in units %}
+                    <tr>
+                    {% if unit.project_id == project.id %}    
+                        <td>{{unit.pn}}</td> 
+                        <td>{{unit.pn_name}}</td> 
+                        <td>{{find_total_hours(unit.pn)}}</td>
+                        <td>{{project.rate * find_total_hours(unit.pn)}}</td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong> Sum </strong></td>
+                        <td><strong> -- </strong></td>
+                        <td><strong>{{cost_per_project(project.id)[0]}}</strong></td>
+                        {% if cost_per_project(project.id)[2]>100 %}
+                            <td style="color: #fd0000"><strong>{{cost_per_project(project.id)[1]}} ({{cost_per_project(project.id)[2]}}% spent)</strong></td>
+                        {% else %}
+                            <td><strong>{{cost_per_project(project.id)[1]}} ({{cost_per_project(project.id)[2]}}% spent)</strong></td>
+                        {% endif %}
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        {% endfor %}
+        <div class="content-section">
+            <table class="table table-striped">
+                <h2>All projects</h2>
+                <p></p>
+                <tr>
+                    <td>Budget</td>
+                    <td class="text-right">{{ total_costs()[0] }} [CHF]</td>
+                </tr>
+                <tr>
+                    <td>Costs</td>
+                    <td class="text-right">{{ total_costs()[1] }} [CHF]</td>
+                </tr>
+                <tr>
+                    <td>Balance (Budget - Cost)</td>
+                    <td class="text-right">{{ total_costs()[2] }} [CHF]</td>
+                </tr>
+            </table>
+        </div>
+{% endblock content %}

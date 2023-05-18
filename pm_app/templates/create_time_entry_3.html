@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                
+                <legend class="border-bottom mb-4">Time entry for {{hov.hov}} unit {{unit.pn_name}} (P/N {{unit.pn}})</legend>
+                <div class="form-group">
+                    {{ form.date_of_work.label(class="form-control-label") }} <br>
+                    {% if form.task.errors %}
+                    {{ form.task(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.task.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.date_of_work(class='datepicker')}} {{ form.hidden_tag() }} 
+                {% endif %}
+                    
+                </div>
+
+                <div class="form-group">
+                    {{ form.task.label(class="form-control-label") }}
+                    {% if form.task.errors %}
+                        {{ form.task(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.task.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.task(class="form-control form-control-lg") }}
+                    {% endif %}
+                    <small>Project must be created first</small>
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    {{ form.time_amount.label(class="form-control-label") }}
+                    {% if form.time_amount.errors %}
+                        {{ form.time_amount(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.time_amount.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.time_amount(class="form-control form-control-lg") }}
+                    {% endif %}
+                    <small>Project must be created first</small>
+                    <br>
+                </div>
+                
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

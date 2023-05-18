@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+        <div class="container-fluid table-responsive">
+            <h1>{{title}}</h1><br>
+            <table class="table table-striped table-hover text-center table-condensed table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        {% for day in weekdays %}
+                            {% if day == 'Week' %}
+                                <th class="text-center col-sm-1" ><strong>  {{day}}  </strong></th>
+                            {% else %}
+                                <th class="text-center col-sm-2" ><strong>  {{day}}  </strong></th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                {% set dates = year_data().keys()|list %}
+                {% for n in range(0,53) %}
+                    <tr>
+                        <td class="text-center"><strong>{{ convert_dt_obj(dates[(7*n)+1]).cw }}</strong></td>
+                        
+                        <td class="text-center"><strong>{{ dates[(7*n)+0] }}</strong>
+                        {% for p in query_per_date(convert_dt_obj(dates[(7*n)+0]).date_obj) %}
+                            <a href="{{ url_for('overview_entry', entry_id = p.entry_id) }}"><p class="text-center">{{p.project}} | {{p.unit_name}} | {{p.time}}</p></a>
+                        {% endfor %}
+                        </td>
+
+                        <td class="text-center"><strong>{{ dates[(7*n)+1] }}</strong>
+                        {% for p in query_per_date(convert_dt_obj(dates[(7*n)+1]).date_obj) %}
+                            <a href="{{ url_for('overview_entry', entry_id = p.entry_id) }}"><p class="text-center">{{p.project}} | {{p.unit_name}} | {{p.time}}</p></a>
+                        {% endfor %}
+                        </td>
+
+                        <td class="text-center"><strong>{{ dates[(7*n)+2] }}</strong>
+                        {% for p in query_per_date(convert_dt_obj(dates[(7*n)+2]).date_obj) %}
+                            <a href="{{ url_for('overview_entry', entry_id = p.entry_id) }}"><p class="text-center">{{p.project}} | {{p.unit_name}} | {{p.time}}</p></a>
+                        {% endfor %}
+                        </td>
+
+                        <td class="text-center"><strong>{{ dates[(7*n)+3] }}</strong>
+                        {% for p in query_per_date(convert_dt_obj(dates[(7*n)+3]).date_obj) %}
+                            <a href="{{ url_for('overview_entry', entry_id = p.entry_id) }}"><p class="text-center">{{p.project}} | {{p.unit_name}} | {{p.time}}</p></a>
+                        {% endfor %}
+                        </td>
+
+                        <td class="text-center"><strong>{{ dates[(7*n)+4] }}</strong>
+                        {% for p in query_per_date(convert_dt_obj(dates[(7*n)+4]).date_obj) %}
+                            <a href="{{ url_for('overview_entry', entry_id = p.entry_id) }}"><p class="text-center">{{p.project}} | {{p.unit_name}} | {{p.time}}</p></a>
+                        {% endfor %}
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock content %}

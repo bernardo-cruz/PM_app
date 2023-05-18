@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{title}}</legend>
+
+                <div class="form-group">
+                    {{ form.pn_name.label(class="form-control-label") }}
+                    {% if form.pn_name.errors %}
+                        {{ form.pn_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.pn_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.pn_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                    <small>Name of the product</small>
+                </div>
+
+                <div class="form-group">
+                    {{ form.pn.label(class="form-control-label") }}
+                    {% if form.pn.errors %}
+                        {{ form.pn(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.pn.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.pn(class="form-control form-control-lg") }}
+                    {% endif %}
+                    <small>Numerical name of the product <strong>must be unique</strong></small>
+                </div>
+                
+                <div class="form-group">
+                    {{ form.hov.label(class="form-control-label") }}
+                    {% if form.hov.errors %}
+                        {{ form.hov(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.hov.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.hov(class="form-control form-control-lg") }}
+                    {% endif %}
+                    <small>Project must be created first</small>
+                    <br>
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

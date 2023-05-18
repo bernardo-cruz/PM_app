@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-section">
+    <h2>Overview of {{kind.capitalize()}}</h2>
+    <table>
+        {%for info in infos%}
+        <tr>
+            <td>{{info.pn}} ({{info.pn_name}})</td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+
+{% endblock %}
