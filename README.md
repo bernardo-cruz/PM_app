@@ -16,7 +16,7 @@ create a repository for this project. I hope you enjoy it!
 
 # Background
 
-My previous employer used used MS Excel for project controling :(
+My previous employer used MS Excel for controling of projects :(
 
 Each employee has a spreadsheet for each projects he/she could possibly
 work on. Each project iself, has a spreadsheet with a lot of information
